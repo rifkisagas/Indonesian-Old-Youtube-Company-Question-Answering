@@ -1,2 +1,3 @@
 # Indonesian Old Youtube Company Question Answering
-A simple Question Anwering System using Tkinter and Cosine Similarity
+too lazy to put a readme here.
+but i'll put the documentation soon
