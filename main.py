@@ -26,36 +26,21 @@ for intent in intents['data']:
 
 context = context[0]
 
-#Corpus
-# nltk.download('stopwords')
-# from nltk.tokenize import word_tokenize
-# from nltk.corpus import stopwords
+# Vectorizer
 from sklearn.feature_extraction.text import CountVectorizer
-# stop_words=set(stopwords.words('indonesian'))
 vectorizer = CountVectorizer()
 X_vec = vectorizer.fit_transform(questions)
 
-#Transformer
+# Transformer
 from sklearn.feature_extraction.text import TfidfTransformer
 tfidf = TfidfTransformer() #by default applies "l2" normalization
 X_tfidf = tfidf.fit_transform(X_vec)
-
-#Conversation Function
-from sklearn.metrics.pairwise import cosine_similarity
-# def conversation(im):
-#     global tfidf, X_tfidf
-#     Y_vec = vectorizer.transform(im)
-#     Y_tfidf = tfidf.fit_transform(Y_vec)
-#     cos_sim = np.rad2deg(np.arccos(max(cosine_similarity(Y_tfidf, X_tfidf)[0])))
-#     if cos_sim > 60 :
-#         return "sorry, I did not quite understand that"
-#     else:
-#         return answer[np.argmax(cosine_similarity(Y_tfidf, X_tfidf)[0])]
 
 #Creating tkinter GUI
 import webbrowser
 from tkinter import *
 from tkinter import ttk
+from sklearn.metrics.pairwise import cosine_similarity
 
 def init():
     ChatBox.config(state=NORMAL)
@@ -64,6 +49,7 @@ def init():
 
 def callback():
     webbrowser.open_new(r"https://rifkisagas.github.io/portfolio/")
+
 def goodbye():
     new= Toplevel(root)
     new.geometry("250x120")
@@ -124,7 +110,7 @@ def view():
     new_ChatBox['yscrollcommand'] = new_scrollbar.set
     new_scrollbar.place(x=478,y=8, height=520)
 
-    # Bagian FAQ
+    # FAQ
     new_ChatBox.config(state=NORMAL)
     # pertanyaan = ['Kapan youtube dibuat?', 'Siapa CEO Youtube?', 
     #              'Berapa Google membayar Youtube pada tahun 2006?', 
